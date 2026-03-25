@@ -36,10 +36,10 @@ dependencies {
 
     implementation("net.kyori:adventure-platform-bukkit:4.4.1")
 
-	compileOnly("org.projectlombok:lombok:1.18.22")
-	annotationProcessor("org.projectlombok:lombok:1.18.22")
-	testCompileOnly("org.projectlombok:lombok:1.18.22")
-	testAnnotationProcessor("org.projectlombok:lombok:1.18.22")
+	compileOnly("org.projectlombok:lombok:1.18.44")
+	annotationProcessor("org.projectlombok:lombok:1.18.44")
+	testCompileOnly("org.projectlombok:lombok:1.18.44")
+	testAnnotationProcessor("org.projectlombok:lombok:1.18.44")
 
     implementation("co.aikar:acf-paper:0.5.1-SNAPSHOT")
 }

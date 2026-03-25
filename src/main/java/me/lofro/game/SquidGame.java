@@ -19,7 +19,6 @@ import me.lofro.game.data.adapters.LocationSerializer;
 import me.lofro.game.games.GameManager;
 import me.lofro.game.global.commands.TimerCMD;
 import me.lofro.game.global.listeners.GlobalListener;
-import me.lofro.game.global.utils.text.HexFormatter;
 import me.lofro.game.players.PlayerManager;
 import me.lofro.game.players.adapters.RuntimeTypeAdapterFactory;
 import me.lofro.game.players.objects.SquidGuard;
@@ -29,7 +28,7 @@ import net.kyori.adventure.text.minimessage.MiniMessage;
 
 /**
  * Entrypoint for Squid Otaku Game plugin.
- * 
+// *
  * 
  * @author <a href="https://github.com/zLofro">Lofro</a> - Developer.
  *
@@ -94,7 +93,6 @@ public class SquidGame extends JavaPlugin {
         this.gManager.getTimer().removePlayers();
 
         if (this.gManager.getGreenLightManager().getSensei() != null) this.gManager.getGreenLightManager().removeSensei();
-        if (this.gManager.getPurgeManager().getFoodPlate() != null) this.gManager.getPurgeManager().removeFoodPlate();
 
         Bukkit.getWorlds().forEach(w -> w.setGameRule(GameRules.KEEP_INVENTORY, true));
 
