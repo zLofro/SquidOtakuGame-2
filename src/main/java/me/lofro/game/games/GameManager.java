@@ -1,6 +1,8 @@
 package me.lofro.game.games;
 
 import com.google.common.collect.ImmutableList;
+import me.lofro.game.games.applepick.ApplePickManager;
+import me.lofro.game.games.applepick.commands.AppleCommand;
 import me.lofro.game.games.backrooms.BackRoomsManager;
 import me.lofro.game.games.backrooms.commands.BackRoomsCMD;
 import me.lofro.game.games.backrooms.types.BackRoomsData;
@@ -39,6 +41,7 @@ public class GameManager extends Restorable<SquidGame> {
     private final @Getter TNTManager tntManager;
     private final @Getter BackRoomsManager backRoomsManager;
     private final @Getter GlassGameManager glassGameManager;
+    private final @Getter ApplePickManager applePickManager;
 
     public GameManager(final SquidGame squidInstance) {
         this.squidInstance = squidInstance;
@@ -51,6 +54,7 @@ public class GameManager extends Restorable<SquidGame> {
         this.tntManager = new TNTManager(this);
         this.backRoomsManager = new BackRoomsManager(this, baseWorld);
         this.glassGameManager = new GlassGameManager(this, baseWorld);
+        this.applePickManager = new ApplePickManager(this);
         // Initialize the Timer.
         this.timer = new GameTimer();
         // Run the task.
@@ -61,7 +65,8 @@ public class GameManager extends Restorable<SquidGame> {
                 new GreenLightCMD(greenLightManager),
                 new TNTCMD(tntManager),
                 new BackRoomsCMD(backRoomsManager),
-                new GlassGameCMD(glassGameManager)
+                new GlassGameCMD(glassGameManager),
+                new AppleCommand(getApplePickManager())
                 );
 
         // Sets the location command completion.
