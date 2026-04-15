@@ -23,7 +23,7 @@ public record GlassGameListener(GlassGameManager glassGManager) implements Liste
 
         var relativeDown = e.getTo().getBlock().getRelative(BlockFace.DOWN);
 
-        if (!relativeDown.getType().equals(Material.RED_STAINED_GLASS)) return;
+        if (!relativeDown.getType().equals(Material.BLACK_STAINED_GLASS)) return;
 
         glassGManager.recursiveBreak(relativeDown, new ArrayList<>(), true, 0, glassGManager.getMaxDepth());
     }

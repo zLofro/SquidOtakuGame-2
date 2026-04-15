@@ -11,7 +11,7 @@ import java.util.EnumSet;
 public class HexFormatter {
 
     private static final Component name = hexFormat("&f&lSquid&d&lOtaku&f&lGame");
-    private static final Component prefix = hexFormat(name + " &7>> &r");
+    private static final Component prefix = name.append(hexFormat(" &7>> "));
 
     public static Component hexFormat(Component text) {
         return hexFormat(deserialize(text));

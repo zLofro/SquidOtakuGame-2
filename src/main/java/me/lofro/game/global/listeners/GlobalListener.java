@@ -120,7 +120,8 @@ public class GlobalListener implements Listener {
             player.getEquipment().setChestplate(null);
             player.getEquipment().setLeggings(null);
 
-            player.getEquipment().setHelmet(CustomItems.Decoration.GUARD_MASK.get());
+            player.getEquipment().setChestplate(CustomItems.Decoration.GUARD_CHESTPLATE.get());
+            player.getEquipment().setLeggings(CustomItems.Decoration.GUARD_LEGGINGS.get());
         } else {
             var id = pManager.pData().getPlayer(name).getId();
 

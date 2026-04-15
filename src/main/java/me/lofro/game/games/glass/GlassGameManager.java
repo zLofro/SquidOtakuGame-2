@@ -144,7 +144,7 @@ public class GlassGameManager {
     }
 
     public boolean isWeakGlass(Block block) {
-        return block.getType().equals(Material.RED_STAINED_GLASS);
+        return block.getType().equals(Material.BLACK_STAINED_GLASS);
     }
 
     public boolean isGlass(Block block) {

@@ -10,6 +10,8 @@ import me.lofro.game.games.commands.GameManagerCMD;
 import me.lofro.game.games.glass.GlassGameManager;
 import me.lofro.game.games.glass.commands.GlassGameCMD;
 import me.lofro.game.games.glass.types.GlassGameData;
+import me.lofro.game.games.smashbros.SmashBrosManager;
+import me.lofro.game.games.smashbros.commands.SmashCommand;
 import me.lofro.game.games.tntTag.TNTManager;
 import me.lofro.game.games.tntTag.commands.TNTCMD;
 import org.bukkit.Bukkit;
@@ -42,6 +44,7 @@ public class GameManager extends Restorable<SquidGame> {
     private final @Getter BackRoomsManager backRoomsManager;
     private final @Getter GlassGameManager glassGameManager;
     private final @Getter ApplePickManager applePickManager;
+    private final @Getter SmashBrosManager smashBrosManager;
 
     public GameManager(final SquidGame squidInstance) {
         this.squidInstance = squidInstance;
@@ -55,6 +58,7 @@ public class GameManager extends Restorable<SquidGame> {
         this.backRoomsManager = new BackRoomsManager(this, baseWorld);
         this.glassGameManager = new GlassGameManager(this, baseWorld);
         this.applePickManager = new ApplePickManager(this);
+        this.smashBrosManager = new SmashBrosManager(this);
         // Initialize the Timer.
         this.timer = new GameTimer();
         // Run the task.
@@ -66,7 +70,8 @@ public class GameManager extends Restorable<SquidGame> {
                 new TNTCMD(tntManager),
                 new BackRoomsCMD(backRoomsManager),
                 new GlassGameCMD(glassGameManager),
-                new AppleCommand(getApplePickManager())
+                new AppleCommand(getApplePickManager()),
+                new SmashCommand(getSmashBrosManager())
                 );
 
         // Sets the location command completion.

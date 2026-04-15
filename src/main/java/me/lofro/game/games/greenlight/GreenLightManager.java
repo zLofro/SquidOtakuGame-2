@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.destroystokyo.paper.ParticleBuilder;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.GameMode;
