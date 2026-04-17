@@ -60,6 +60,8 @@ public class ApplePickManager {
         this.taskLaterID = Bukkit.getScheduler()
                 .runTaskLater(gManager.getSquidInstance(), this::endGame, (seconds + 2) * 20L)
                 .getTaskId();
+
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "kirby", 0.5f, 1));
     }
 
     public void endGame() {

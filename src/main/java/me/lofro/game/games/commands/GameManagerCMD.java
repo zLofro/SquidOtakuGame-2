@@ -9,6 +9,8 @@ import me.lofro.game.global.enums.Day;
 import me.lofro.game.global.enums.PvPState;
 import me.lofro.game.global.item.CustomItems;
 import me.lofro.game.global.utils.text.HexFormatter;
+import org.bukkit.Bukkit;
+import org.bukkit.Sound;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -44,6 +46,14 @@ public class GameManagerCMD extends BaseCommand {
             sender.sendMessage(HexFormatter.hexFormatWithPrefix("&bEl día ha sido actualizado a &3" + day.name() + "&b."));
         } else {
             sender.sendMessage(HexFormatter.hexFormatWithPrefix("&cEl día ya es " + day.name() + "."));
+        }
+    }
+
+    @Subcommand("playSound")
+    private void playSound(CommandSender sender, String sound) {
+        if (sound != null) {
+            sender.sendMessage(HexFormatter.hexFormat("&aSe ha reproducido el sonido."));
+            Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), sound, 1, 1));
         }
     }
 

@@ -88,7 +88,7 @@ public class BackRoomsManager {
         gManager.getTimer().start(safeSeconds);
 
         Bukkit.getOnlinePlayers().forEach(p -> {
-            p.playSound(p.getLocation(), "sfx.backrooms_intro", 1f, 1f);
+            p.playSound(p.getLocation(), "zelda", 0.5f, 1f);
 
             if (!playerManager().isPlayer(p) || p.getGameMode().equals(GameMode.SPECTATOR) || p.getGameMode().equals(GameMode.CREATIVE)) return;
 
@@ -98,7 +98,6 @@ public class BackRoomsManager {
         this.changeStateLaterTaskID = Bukkit.getScheduler().runTaskLater
                 (gManager.getSquidInstance(), () -> {
                     changeState(BackRoomsState.HUNTING);
-                    Bukkit.broadcast(gamePrefix.append(HexFormatter.hexFormat("&cLas bestias han sido liberadas.")));
                 }, (safeSeconds + 2) * 20L).getTaskId();
     }
 
@@ -121,6 +120,8 @@ public class BackRoomsManager {
 
     public void killLosers() {
         var losers = backRoomsListener.getLosers();
+
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "zelda2", 1, 1));
 
         losers.values().forEach(p -> p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, Integer.MAX_VALUE, 1, false, false)));
     }

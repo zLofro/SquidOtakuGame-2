@@ -187,7 +187,7 @@ public class GlobalListener implements Listener {
 
         squidPlayer.setDead(true);
 
-        Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(), "sfx.elimination", 1, 1));
+        Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(), "muerte", 1, 1));
 
         Bukkit.broadcast(HexFormatter.hexFormat("&bEl jugador &3#" + playerID + " " + name + " &bha sido eliminado."));
 

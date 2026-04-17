@@ -69,6 +69,8 @@ public class GlassGameManager {
         gManager.getSquidInstance().unregisterListener(preGlassGameListener);
         gManager.getSquidInstance().registerListener(glassGameListener);
 
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "donkey", 1, 1));
+
         this.endTaskID = Bukkit.getScheduler().runTaskLater(gManager.getSquidInstance(), this::endGame, (gameSeconds + 2) * 20L).getTaskId();
     }
 
@@ -131,7 +133,7 @@ public class GlassGameManager {
         if (depth >= maxDepth) {
             return;
         }
-        if (playSound) Sounds.playSoundDistance(b.getLocation(), 100, "sfx.glass_break", 1f, 1f);
+        if (playSound) Sounds.playSoundDistance(b.getLocation(), 100, "vidrio", 1f, 1f);
         for (var f : BlockFace.values()) {
             var block = b.getRelative(f);
             if (block.getType() == Material.AIR || blocks.contains(block)) continue;

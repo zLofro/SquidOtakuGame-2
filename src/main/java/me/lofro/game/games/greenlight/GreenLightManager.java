@@ -85,7 +85,7 @@ public class GreenLightManager {
 
         gManager.getSquidInstance().registerListener(preGameListener);
 
-        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "sfx.green_red_light", 1, 1));
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "mario", 0.5f, 1));
     }
 
     public void stopPreStart() {
@@ -151,7 +151,7 @@ public class GreenLightManager {
         if (player.getGameMode().equals(GameMode.SPECTATOR) || player.getGameMode().equals(GameMode.CREATIVE)
                 || playerManager().isDead(player))
             return;
-        Sounds.playSoundDistance(cubeCenter, 150, "sfx.dramatic_gun_shots", 1f, 1f);
+        Sounds.playSoundDistance(cubeCenter, 150, "bala", 1f, 1f);
         if (!cannonLocations().isEmpty())
             shootCannon(player, 0.25);
         player.setHealth(0);

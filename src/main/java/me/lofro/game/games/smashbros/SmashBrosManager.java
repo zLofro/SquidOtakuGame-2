@@ -7,6 +7,7 @@ import me.lofro.game.games.GameManager;
 import me.lofro.game.games.smashbros.listeners.SmashBrosListener;
 import me.lofro.game.global.enums.PvPState;
 import me.lofro.game.players.PlayerManager;
+import org.bukkit.Bukkit;
 
 public class SmashBrosManager {
 
@@ -32,6 +33,8 @@ public class SmashBrosManager {
         deaths = 0;
         SquidGame.getInstance().getGManager().gameData().setPvPState(PvPState.ALL);
         gameManager.getSquidInstance().registerListener(listener);
+
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "smash1", 0.5f, 1));
 
         //TODO EFECTOS Y MUSICA
     }
