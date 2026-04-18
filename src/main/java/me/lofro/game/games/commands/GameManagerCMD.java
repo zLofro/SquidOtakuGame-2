@@ -50,10 +50,11 @@ public class GameManagerCMD extends BaseCommand {
     }
 
     @Subcommand("playSound")
-    private void playSound(CommandSender sender, String sound) {
+    @CommandCompletion("sound volume")
+    private void playSound(CommandSender sender, String sound, float volume) {
         if (sound != null) {
             sender.sendMessage(HexFormatter.hexFormat("&aSe ha reproducido el sonido."));
-            Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), sound, 1, 1));
+            Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), sound, volume, 1));
         }
     }
 

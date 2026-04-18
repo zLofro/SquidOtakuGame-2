@@ -43,6 +43,9 @@ public class GlassGameManager {
 
     private final @Getter World world;
 
+    private @Getter int winnerLimit = 10;
+    private @Getter @Setter int winners = 0;
+
     public GlassGameManager(GameManager gManager, World world) {
         this.gManager = gManager;
         this.world = world;
@@ -54,7 +57,7 @@ public class GlassGameManager {
         this.preGlassGameListener = new PreGlassGameListener(this);
     }
 
-    public void runGame(int gameSeconds, int maxDepth) {
+    public void runGame(int gameSeconds, int maxDepth, int winnerLimit) {
         if (this.isRunning)
             throw new IllegalStateException(
                     "The game " + this.getClass().getSimpleName() + " is already running.");
@@ -63,13 +66,14 @@ public class GlassGameManager {
         this.maxDepth = maxDepth;
         this.isRunning = true;
         this.glassGameState = GlassGameState.RUNNING;
+        this.winnerLimit = winnerLimit;
 
         gManager.getTimer().start(gameSeconds);
 
         gManager.getSquidInstance().unregisterListener(preGlassGameListener);
         gManager.getSquidInstance().registerListener(glassGameListener);
 
-        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "donkey", 1, 1));
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "custom.donkey", 0.1f, 1));
 
         this.endTaskID = Bukkit.getScheduler().runTaskLater(gManager.getSquidInstance(), this::endGame, (gameSeconds + 2) * 20L).getTaskId();
     }
@@ -82,6 +86,8 @@ public class GlassGameManager {
         gManager.getSquidInstance().unregisterListener(glassGameListener);
 
         breakAllGlass();
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     public void stopGame() {
@@ -93,6 +99,8 @@ public class GlassGameManager {
 
         gManager.getTimer().end();
         gManager.getSquidInstance().unregisterListener(glassGameListener);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     public void preGame() {
@@ -115,7 +123,7 @@ public class GlassGameManager {
 
             if (!isGlass(block)) return;
 
-            Sounds.playSoundDistance(block.getLocation(), 100, "sfx.glass_break", 1f, 1f);
+            Sounds.playSoundDistance(block.getLocation(), 100, "custom.vidrio", 1f, 1f);
             breakGlass(block, false);
         });
     }
@@ -125,7 +133,7 @@ public class GlassGameManager {
 
             block.breakNaturally(new ItemStack(Material.AIR), true);
 
-            if (playSound) Sounds.playSoundDistance(block.getLocation(), 100, "sfx.glass_break", 1f, 1f);
+            if (playSound) Sounds.playSoundDistance(block.getLocation(), 100, "custom.vidrio", 1f, 1f);
         }
     }
 
@@ -133,7 +141,7 @@ public class GlassGameManager {
         if (depth >= maxDepth) {
             return;
         }
-        if (playSound) Sounds.playSoundDistance(b.getLocation(), 100, "vidrio", 1f, 1f);
+        if (playSound) Sounds.playSoundDistance(b.getLocation(), 100, "custom.vidrio", 1f, 1f);
         for (var f : BlockFace.values()) {
             var block = b.getRelative(f);
             if (block.getType() == Material.AIR || blocks.contains(block)) continue;

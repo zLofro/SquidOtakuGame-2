@@ -27,10 +27,10 @@ public class GlassGameCMD extends BaseCommand {
     }
 
     @Subcommand("start")
-    @CommandCompletion("time maxDepth")
-    public void startGame(CommandSender sender, int time, int maxDepth) {
+    @CommandCompletion("time maxDepth playerLimit")
+    public void startGame(CommandSender sender, int time, int maxDepth, int playerLimit) {
         if (!glassGManager.isRunning()) {
-            glassGManager.runGame(time, maxDepth);
+            glassGManager.runGame(time, maxDepth, playerLimit);
 
             sender.sendMessage(HexFormatter.hexFormatWithPrefix("&bEl juego ha sido iniciado con éxito."));
         } else {

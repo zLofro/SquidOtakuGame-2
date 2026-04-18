@@ -88,7 +88,7 @@ public class BackRoomsManager {
         gManager.getTimer().start(safeSeconds);
 
         Bukkit.getOnlinePlayers().forEach(p -> {
-            p.playSound(p.getLocation(), "zelda", 0.5f, 1f);
+            p.playSound(p.getLocation(), "custom.zelda", 0.5f, 1f);
 
             if (!playerManager().isPlayer(p) || p.getGameMode().equals(GameMode.SPECTATOR) || p.getGameMode().equals(GameMode.CREATIVE)) return;
 
@@ -116,12 +116,14 @@ public class BackRoomsManager {
         Bukkit.getOnlinePlayers().forEach(p -> p.removePotionEffect(PotionEffectType.BLINDNESS));
 
         gManager.getSquidInstance().unregisterListener(backRoomsListener);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     public void killLosers() {
         var losers = backRoomsListener.getLosers();
 
-        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "zelda2", 1, 1));
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "custom.zelda2", 1, 1));
 
         losers.values().forEach(p -> p.addPotionEffect(new PotionEffect(PotionEffectType.WITHER, Integer.MAX_VALUE, 1, false, false)));
     }
@@ -132,6 +134,8 @@ public class BackRoomsManager {
         backRoomsListener.getLosers().clear();
         this.isRunning = false;
         gameManager().getSquidInstance().unregisterListener(backRoomsListener);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     public void changeState(BackRoomsState backRoomsState) {

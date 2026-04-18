@@ -120,8 +120,10 @@ public class GlobalListener implements Listener {
             player.getEquipment().setChestplate(null);
             player.getEquipment().setLeggings(null);
 
+            player.getEquipment().setHelmet(CustomItems.Decoration.GUARD_HELMET.get());
             player.getEquipment().setChestplate(CustomItems.Decoration.GUARD_CHESTPLATE.get());
             player.getEquipment().setLeggings(CustomItems.Decoration.GUARD_LEGGINGS.get());
+            player.getEquipment().setBoots(CustomItems.Decoration.GUARD_BOOTS.get());
         } else {
             var id = pManager.pData().getPlayer(name).getId();
 
@@ -134,6 +136,7 @@ public class GlobalListener implements Listener {
 
             player.getEquipment().setChestplate(CustomItems.Decoration.PLAYER_CHESTPLATE.get());
             player.getEquipment().setLeggings(CustomItems.Decoration.PLAYER_LEGGINGS.get());
+            player.getEquipment().setBoots(CustomItems.Decoration.PLAYER_BOOTS.get());
         }
     }
 
@@ -187,7 +190,7 @@ public class GlobalListener implements Listener {
 
         squidPlayer.setDead(true);
 
-        Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(), "muerte", 1, 1));
+        Bukkit.getOnlinePlayers().forEach(online -> online.playSound(online.getLocation(), "custom.muerte", 1, 1));
 
         Bukkit.broadcast(HexFormatter.hexFormat("&bEl jugador &3#" + playerID + " " + name + " &bha sido eliminado."));
 

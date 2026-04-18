@@ -61,7 +61,7 @@ public class ApplePickManager {
                 .runTaskLater(gManager.getSquidInstance(), this::endGame, (seconds + 2) * 20L)
                 .getTaskId();
 
-        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "kirby", 0.5f, 1));
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "custom.kirby", 0.1f, 1));
     }
 
     public void endGame() {
@@ -73,6 +73,8 @@ public class ApplePickManager {
 
         gManager.gameData().setPvPState(PvPState.ONLY_GUARDS);
         gManager.getSquidInstance().unregisterListener(appleListener);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     public void stopGame() {
@@ -86,6 +88,8 @@ public class ApplePickManager {
         gManager.getTimer().end();
         gManager.gameData().setPvPState(PvPState.ONLY_GUARDS);
         gManager.getSquidInstance().unregisterListener(appleListener);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     /**

@@ -53,7 +53,7 @@ public class TNTManager {
 
         randomTag(taggedLimit);
 
-        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "bomberman1", 05.f, 1));
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "custom.bomberman1", 01.f, 1));
 
         this.taskLaterID = Bukkit.getScheduler().runTaskLater(gManager.getSquidInstance(), this::endGame, (seconds + 2) * 20L).getTaskId();
     }
@@ -67,6 +67,8 @@ public class TNTManager {
         gManager.gameData().setPvPState(PvPState.ONLY_GUARDS);
 
         gManager.getSquidInstance().unregisterListener(tntListener);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     public void stopGame() {
@@ -82,6 +84,8 @@ public class TNTManager {
         gManager.gameData().setPvPState(PvPState.ONLY_GUARDS);
 
         gManager.getSquidInstance().unregisterListener(tntListener);
+
+        Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "stopsound @a");
     }
 
     public void randomTag(int times) {

@@ -92,7 +92,7 @@ public class GreenLightGame extends BukkitRunnable {
     private void greenLightTitle(String title, String subTitle) {
         Bukkit.getOnlinePlayers().forEach(p -> {
             p.showTitle(Title.title(HexFormatter.hexFormat(title), HexFormatter.hexFormat(subTitle), Title.Times.times(Duration.ofSeconds(0), Duration.ofSeconds(3), Duration.ofSeconds(3))));
-            p.playSound(p.getLocation(), "luz", 1, 1);
+            p.playSound(p.getLocation(), "custom.luz", 1, 1);
         });
     }
 

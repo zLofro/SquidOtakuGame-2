@@ -34,7 +34,7 @@ public class SmashBrosManager {
         SquidGame.getInstance().getGManager().gameData().setPvPState(PvPState.ALL);
         gameManager.getSquidInstance().registerListener(listener);
 
-        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "smash1", 0.5f, 1));
+        Bukkit.getOnlinePlayers().forEach(p -> p.playSound(p.getLocation(), "custom.smash1", 0.1f, 1));
 
         //TODO EFECTOS Y MUSICA
     }
